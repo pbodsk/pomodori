@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NetworkController.h"
 
 #define kInitialValue 25 * 60
 
@@ -74,4 +75,8 @@
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
 }
 
+- (IBAction)testNetwork:(id)sender {
+    NetworkController *networkController = [[NetworkController alloc]init];
+    [networkController browseForNetworks];
+}
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CocoaAsyncSocket/AsyncSocket.h>
 
-@interface NetworkController : NSObject
-
+@interface NetworkController : NSObject <NSNetServiceDelegate, NSNetServiceBrowserDelegate, AsyncSocketDelegate>
+- (void) browseForNetworks;
 @end
