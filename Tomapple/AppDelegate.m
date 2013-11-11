@@ -36,14 +36,12 @@
 }
 
 - (IBAction)startButtonTapped:(id)sender {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
     self.startButton.hidden = YES;
     self.pauseButton.hidden = NO;
 }
 
 - (IBAction)resetButtonTapped:(id)sender {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     [self invalidateTimer];
     self.remainingTime = kInitialValue;
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
