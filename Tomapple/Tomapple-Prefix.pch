@@ -4,4 +4,7 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+#define kDomain @"local."
+#define kDomainType @"_tomapple._tcp."
+
 #endif

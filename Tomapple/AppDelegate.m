@@ -17,6 +17,7 @@
 @property  (nonatomic )NSInteger remainingTime;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) BOOL inPauseMode;
+@property (nonatomic, strong)NetworkController *networkController;
 
 @end
 
@@ -28,6 +29,8 @@
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
     self.inPauseMode = NO;
+    
+    self.networkController = [[NetworkController alloc]init];
 }
 
 -(void) populateTimerLabelFromRemainingTime:(NSInteger)remainingTime {
@@ -76,7 +79,10 @@
 }
 
 - (IBAction)testNetwork:(id)sender {
-    NetworkController *networkController = [[NetworkController alloc]init];
-    [networkController browseForNetworks];
+    [self.networkController broadcastServer];
+}
+
+- (IBAction)lookup:(id)sender {
+        [self.networkController browseForNetworks];
 }
 @end

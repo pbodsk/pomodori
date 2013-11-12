@@ -14,6 +14,9 @@
 		AD46EF2B182FA9570019BD87 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AD46EF29182FA9570019BD87 /* Credits.rtf */; };
 		AD46EF2E182FA9570019BD87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD46EF2D182FA9570019BD87 /* AppDelegate.m */; };
 		AD46EF31182FA9570019BD87 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD46EF2F182FA9570019BD87 /* MainMenu.xib */; };
+		ADC6066B1832BBF700E052C3 /* TomAppleServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6066A1832BBF700E052C3 /* TomAppleServer.m */; };
+		ADC6066E1832C0CD00E052C3 /* TomAppleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */; };
+		ADC606721832CAE100E052C3 /* UserInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC606711832CAE100E052C3 /* UserInformation.m */; };
 		BE3607FE948548FD89EDA463 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB061D7596D245F9AF7C3618 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,12 @@
 		AD46EF2C182FA9570019BD87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AD46EF2D182FA9570019BD87 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AD46EF30182FA9570019BD87 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		ADC606691832BBF700E052C3 /* TomAppleServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TomAppleServer.h; path = Network/TomAppleServer.h; sourceTree = "<group>"; };
+		ADC6066A1832BBF700E052C3 /* TomAppleServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TomAppleServer.m; path = Network/TomAppleServer.m; sourceTree = "<group>"; };
+		ADC6066C1832C0CD00E052C3 /* TomAppleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TomAppleClient.h; path = Network/TomAppleClient.h; sourceTree = "<group>"; };
+		ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TomAppleClient.m; path = Network/TomAppleClient.m; sourceTree = "<group>"; };
+		ADC606701832CAE100E052C3 /* UserInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInformation.h; path = Model/UserInformation.h; sourceTree = "<group>"; };
+		ADC606711832CAE100E052C3 /* UserInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInformation.m; path = Model/UserInformation.m; sourceTree = "<group>"; };
 		CB061D7596D245F9AF7C3618 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -55,6 +64,10 @@
 			children = (
 				AD0EC6AF182FBC5400F0C65D /* NetworkController.h */,
 				AD0EC6B0182FBC5400F0C65D /* NetworkController.m */,
+				ADC606691832BBF700E052C3 /* TomAppleServer.h */,
+				ADC6066A1832BBF700E052C3 /* TomAppleServer.m */,
+				ADC6066C1832C0CD00E052C3 /* TomAppleClient.h */,
+				ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -100,6 +113,7 @@
 		AD46EF20182FA9570019BD87 /* Tomapple */ = {
 			isa = PBXGroup;
 			children = (
+				ADC6066F1832CAA800E052C3 /* Model */,
 				AD0EC6AE182FBBF700F0C65D /* Network */,
 				AD46EF2C182FA9570019BD87 /* AppDelegate.h */,
 				AD46EF2D182FA9570019BD87 /* AppDelegate.m */,
@@ -119,6 +133,15 @@
 				AD46EF29182FA9570019BD87 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ADC6066F1832CAA800E052C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ADC606701832CAE100E052C3 /* UserInformation.h */,
+				ADC606711832CAE100E052C3 /* UserInformation.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +246,9 @@
 				AD46EF27182FA9570019BD87 /* main.m in Sources */,
 				AD46EF2E182FA9570019BD87 /* AppDelegate.m in Sources */,
 				AD0EC6B1182FBC5400F0C65D /* NetworkController.m in Sources */,
+				ADC6066B1832BBF700E052C3 /* TomAppleServer.m in Sources */,
+				ADC6066E1832C0CD00E052C3 /* TomAppleClient.m in Sources */,
+				ADC606721832CAE100E052C3 /* UserInformation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

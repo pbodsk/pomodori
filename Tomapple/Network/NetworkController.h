@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CocoaAsyncSocket/AsyncSocket.h>
+#import "TomAppleClient.h"
 
-@interface NetworkController : NSObject <NSNetServiceDelegate, NSNetServiceBrowserDelegate, AsyncSocketDelegate>
+
+@interface NetworkController : NSObject <TomAppleClientDelegate>
 - (void) browseForNetworks;
+- (void) broadcastServer;
 @end

@@ -19,5 +19,6 @@
 @property (weak) IBOutlet NSButton *pauseButton;
 @property (weak) IBOutlet NSButton *resetButton;
 - (IBAction)testNetwork:(id)sender;
+- (IBAction)lookup:(id)sender;
 
 @end
