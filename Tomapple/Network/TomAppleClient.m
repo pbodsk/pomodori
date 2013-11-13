@@ -135,9 +135,11 @@
 }
 
 - (void)parseBody:(NSData *)data {
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
-    UserInformation *proof = [unarchiver decodeObjectForKey:@"packet"];
-    [unarchiver finishDecoding];
+//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
+    NSArray *proofArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    UserInformation *proof = [proofArray objectAtIndex:0];
+//    UserInformation *proof = [unarchiver decodeObjectForKey:@"packet"];
+//    [unarchiver finishDecoding];
     NSLog(@"Woooot!! client got data from server: userName: %@, remainingTime %li", proof.userName, (long)proof.remainingTime);
 }
 

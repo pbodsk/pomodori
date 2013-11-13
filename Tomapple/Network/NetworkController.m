@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         self.client = [[TomAppleClient alloc]initWithDelegate:self];
-        self.server = [TomAppleServer new];
+        self.server = [[TomAppleServer alloc]initWithDelegate:self];
     }
     return self;
 }
@@ -44,6 +44,12 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [self.server startBroadCasting];
     [self.client browseForNetworks];
+}
+
+#pragma mark TomAppleServerDelegate methods
+- (void)server:(TomAppleServer *)server containsUsers:(NSDictionary *)containedUsers {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
 }
 
 @end

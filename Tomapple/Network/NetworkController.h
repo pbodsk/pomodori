@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "TomAppleClient.h"
+#import "TomAppleServerDelegate.h"
 
 
-@interface NetworkController : NSObject <TomAppleClientDelegate>
+@interface NetworkController : NSObject <TomAppleClientDelegate, TomAppleServerDelegate>
 - (void) browseForNetworks;
 - (void) broadcastServer;
 @end

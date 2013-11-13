@@ -24,6 +24,7 @@
 		26C10C4A0EBC424B95244951 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		AD0EC6AF182FBC5400F0C65D /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkController.h; path = Network/NetworkController.h; sourceTree = "<group>"; };
 		AD0EC6B0182FBC5400F0C65D /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkController.m; path = Network/NetworkController.m; sourceTree = "<group>"; };
+		AD3C8BB51834108B009A0136 /* TomAppleServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TomAppleServerDelegate.h; path = Network/TomAppleServerDelegate.h; sourceTree = "<group>"; };
 		AD46EF17182FA9570019BD87 /* Tomapple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tomapple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD46EF1A182FA9570019BD87 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AD46EF1D182FA9570019BD87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -68,6 +69,7 @@
 				ADC6066A1832BBF700E052C3 /* TomAppleServer.m */,
 				ADC6066C1832C0CD00E052C3 /* TomAppleClient.h */,
 				ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */,
+				AD3C8BB51834108B009A0136 /* TomAppleServerDelegate.h */,
 			);
 			name = Network;
 			sourceTree = "<group>";
