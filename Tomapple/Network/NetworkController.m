@@ -9,47 +9,43 @@
 #import "NetworkController.h"
 #import "TomAppleServer.h"
 #import "TomAppleClient.h"
+#import "UserInformation.h"
 
 @interface NetworkController ()
+@property (nonatomic, weak) id<NetworkControllerDelegate>delegate;
 @property (nonatomic, strong) TomAppleClient *client;
 @property (nonatomic, strong) TomAppleServer *server;
+@property (nonatomic, strong) UserInformation *userInformation;
 
 @end
 
 @implementation NetworkController
 
--(id)init {
+-(id)initWithDelegate:(id<NetworkControllerDelegate>)delegate {
     self = [super init];
     if (self) {
+        self.delegate = delegate;
         self.client = [[TomAppleClient alloc]initWithDelegate:self];
-        self.server = [[TomAppleServer alloc]initWithDelegate:self];
+        self.server = [[TomAppleServer alloc]init];
     }
     return self;
 }
 
--(void)browseForNetworks {
+- (void) sendUserInformation:(UserInformation *)userInformation {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    [self.client browseForNetworks];
-}
-
-- (void)broadcastServer {
-    [self startBroadcasting];
-}
-
-- (void)startBroadcasting {
+    self.userInformation = userInformation;
+    [self.client tryToSendUserUserInformation:self.userInformation];
 }
 
 #pragma mark TomAppleClientDelegate methods
 - (void)timeoutPeriodForClientSearchReached {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [self.server startBroadCasting];
-    [self.client browseForNetworks];
+    [self.client tryToSendUserUserInformation:self.userInformation];
 }
 
-#pragma mark TomAppleServerDelegate methods
-- (void)server:(TomAppleServer *)server containsUsers:(NSDictionary *)containedUsers {
+- (void)client:(TomAppleClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
+    [self.delegate networkController:self didReceiveUsersFromServer:usersFromServer];
 }
-
 @end

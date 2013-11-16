@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "TomAppleClient.h"
-#import "TomAppleServerDelegate.h"
+@class UserInformation;
+@protocol NetworkControllerDelegate;
 
+@interface NetworkController : NSObject <TomAppleClientDelegate>
+- (id) initWithDelegate:(id <NetworkControllerDelegate>)delegate;
+- (void) sendUserInformation:(UserInformation *)userInformation;
+@end
 
-@interface NetworkController : NSObject <TomAppleClientDelegate, TomAppleServerDelegate>
-- (void) browseForNetworks;
-- (void) broadcastServer;
+@protocol NetworkControllerDelegate <NSObject>
+
+@required
+- (void)networkController:(NetworkController *)networkController didReceiveUsersFromServer:(NSDictionary *)usersFromServer;
 @end

@@ -8,11 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CocoaAsyncSocket/AsyncSocket.h>
-#import "TomAppleServerDelegate.h"
 
 
 @interface TomAppleServer : NSObject <NSNetServiceDelegate, AsyncSocketDelegate>
-- (id)initWithDelegate:(id<TomAppleServerDelegate>)delegate;
 - (void)startBroadCasting;
 @end
 

@@ -9,7 +9,6 @@
 #import "TomAppleServer.h"
 #import "UserInformation.h"
 @interface TomAppleServer ()
-@property (weak, nonatomic) id<TomAppleServerDelegate> delegate;
 @property (nonatomic, strong) NSNetService *netService;
 @property (nonatomic, strong) AsyncSocket *socket;
 @property (nonatomic, strong) NSMutableDictionary *users;
@@ -17,10 +16,9 @@
 
 @implementation TomAppleServer
 
--(id)initWithDelegate:(id<TomAppleServerDelegate>)delegate {
+-(id)init {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
         self.users = [NSMutableDictionary dictionary];
     }
     return self;
@@ -68,8 +66,8 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [self setSocket:newSocket];
     [newSocket readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
-    UserInformation *proof = [[UserInformation alloc]initWithUserName:@"Peter" remainingTime:180];
-    [self sendPacket:proof];
+//    UserInformation *proof = [[UserInformation alloc]initWithUserName:@"Peter" remainingTime:180];
+//    [self sendPacket:proof];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
@@ -94,28 +92,29 @@
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
     UserInformation *receivedUserInformation = [unarchiver decodeObjectForKey:@"packet"];
     [unarchiver finishDecoding];
-    NSLog(@"Woooot!! server got data from client: userName: %@, remainingTime %li", receivedUserInformation.userName, (long)receivedUserInformation.remainingTime);
+    //NSLog(@"Woooot!! server got data from client: userName: %@, remainingTime %li", receivedUserInformation.userName, (long)receivedUserInformation.remainingTime);
     if([self.users objectForKey:receivedUserInformation.userName]){
         [self.users setValue:receivedUserInformation forKey:receivedUserInformation.userName];
     } else {
         [self.users setValue:receivedUserInformation forKey:receivedUserInformation.userName];
     }
     
-    [self.delegate server:self containsUsers:self.users];
+    //[self.delegate server:self containsUsers:self.users];
+    [self sendUsers:[NSDictionary dictionaryWithDictionary:self.users]];
 }
 
 
 
-- (void)sendPacket:(UserInformation *)packet {
+- (void)sendUsers:(NSDictionary *)users {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    NSArray *packetArray = @[packet];
+    //NSArray *packetArray = @[packet];
     /*
     NSMutableData *packetData = [[NSMutableData alloc]init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:packetData];
     [archiver encodeObject:packet forKey:@"packet"];
     [archiver finishEncoding];
      */
-    NSData *packetData = [NSKeyedArchiver archivedDataWithRootObject:packetArray];
+    NSData *packetData = [NSKeyedArchiver archivedDataWithRootObject:users];
     NSMutableData *buffer = [[NSMutableData alloc]init];
     //fill buffer
     uint64_t headerLength = [packetData length];

@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@protocol NetworkControllerDelegate;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NetworkControllerDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextFieldCell *timerLabel;

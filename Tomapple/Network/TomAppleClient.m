@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSNetService *netService;
 @property (nonatomic, strong) AsyncSocket *socket;
 @property (nonatomic) BOOL servicesFoundBeforeTimeout;
+@property (nonatomic, strong) UserInformation *userInformation;
 @end
 
 @implementation TomAppleClient
@@ -28,8 +29,9 @@
     return self;
 }
 
-- (void)browseForNetworks {
+- (void)tryToSendUserUserInformation:(UserInformation *)userInformation {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    self.userInformation = userInformation;
     self.netServiceBrowser = [[NSNetServiceBrowser alloc]init];
     self.netServiceBrowser.delegate = self;
     self.servicesFoundBeforeTimeout = NO;
@@ -38,10 +40,17 @@
 }
 
 - (void)searchTimeoutReached:(NSTimer *)timer {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if(! self.servicesFoundBeforeTimeout){
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        [self stopBrowsing];
         [self.delegate performSelector:@selector(timeoutPeriodForClientSearchReached)];
     }
+}
+
+- (void)stopBrowsing {
+    [self.netServiceBrowser stop];
+    self.netServiceBrowser.delegate = nil;
+    self.netServiceBrowser = nil;    
 }
 
 #pragma mark NSNetServiceBrowserDelegate methods
@@ -54,10 +63,6 @@
 }
 
 - (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)aNetServiceBrowser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-}
-
-- (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)aNetServiceBrowser {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
@@ -106,9 +111,7 @@
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [sock readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
-    
-    UserInformation *proof = [[UserInformation alloc]initWithUserName:@"Pia" remainingTime:1800];
-    [self sendPacket:proof];
+    [self sendPacket:self.userInformation];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
@@ -135,12 +138,8 @@
 }
 
 - (void)parseBody:(NSData *)data {
-//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:data];
-    NSArray *proofArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    UserInformation *proof = [proofArray objectAtIndex:0];
-//    UserInformation *proof = [unarchiver decodeObjectForKey:@"packet"];
-//    [unarchiver finishDecoding];
-    NSLog(@"Woooot!! client got data from server: userName: %@, remainingTime %li", proof.userName, (long)proof.remainingTime);
+    NSDictionary *usersFromServer = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    [self.delegate client:self didReceiveUsersFromServer:usersFromServer];
 }
 
 #pragma mark send method

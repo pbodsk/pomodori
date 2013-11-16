@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NetworkController.h"
+#import "UserInformation.h"
 
 #define kInitialValue 25 * 60
 
@@ -17,7 +18,8 @@
 @property  (nonatomic )NSInteger remainingTime;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) BOOL inPauseMode;
-@property (nonatomic, strong)NetworkController *networkController;
+@property (nonatomic, strong) NetworkController *networkController;
+@property (nonatomic, strong) NSDictionary *usersFromServer;
 
 @end
 
@@ -30,7 +32,7 @@
     self.pauseButton.hidden = YES;
     self.inPauseMode = NO;
     
-    self.networkController = [[NetworkController alloc]init];
+    self.networkController = [[NetworkController alloc]initWithDelegate:self];
 }
 
 -(void) populateTimerLabelFromRemainingTime:(NSInteger)remainingTime {
@@ -78,11 +80,15 @@
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
 }
 
-- (IBAction)testNetwork:(id)sender {
-    [self.networkController broadcastServer];
+- (IBAction)lookup:(id)sender {
+    NSString *computerName = [[NSHost currentHost]name];
+    UserInformation *userInformation = [[UserInformation alloc]initWithUserName:computerName remainingTime:self.remainingTime];
+    [self.networkController sendUserInformation:userInformation];
 }
 
-- (IBAction)lookup:(id)sender {
-        [self.networkController browseForNetworks];
+#pragma mark - NetworkControllerDelegateMethods
+-(void)networkController:(NetworkController *)networkController didReceiveUsersFromServer:(NSDictionary *)usersFromServer {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    self.usersFromServer = usersFromServer;
 }
 @end
