@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@protocol NetworkControllerDelegate;
+#import "NetworkController.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NetworkControllerDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NetworkControllerDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextFieldCell *timerLabel;
@@ -19,7 +19,6 @@
 @property (weak) IBOutlet NSButton *startButton;
 @property (weak) IBOutlet NSButton *pauseButton;
 @property (weak) IBOutlet NSButton *resetButton;
-- (IBAction)testNetwork:(id)sender;
-- (IBAction)lookup:(id)sender;
+@property (weak) IBOutlet NSTableView *usersTable;
 
 @end

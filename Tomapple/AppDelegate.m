@@ -16,10 +16,13 @@
     
 }
 @property  (nonatomic )NSInteger remainingTime;
-@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *pomodoroTimer;
+@property (nonatomic, strong) NSTimer *networkTimer;
 @property (nonatomic) BOOL inPauseMode;
 @property (nonatomic, strong) NetworkController *networkController;
-@property (nonatomic, strong) NSDictionary *usersFromServer;
+@property (nonatomic, strong) NSArray *userNamesFromServer;
+@property (nonatomic, strong) NSArray *userInformationsFromServer;
+@property (nonatomic, strong) NSString *userName;
 
 @end
 
@@ -31,18 +34,28 @@
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
     self.inPauseMode = NO;
+    //TODO, skal udvides så man selv kan sende et navn ind.
+    self.userName = [[NSHost currentHost]name];
     
     self.networkController = [[NetworkController alloc]initWithDelegate:self];
+    self.usersTable.delegate = self;
+    self.usersTable.dataSource = self;
 }
 
 -(void) populateTimerLabelFromRemainingTime:(NSInteger)remainingTime {
+    self.timerLabel.title = [self presentationStringFromRemainingTime:remainingTime];
+}
+
+-(NSString *)presentationStringFromRemainingTime:(NSInteger)remainingTime {
     NSInteger minutes = remainingTime / 60;
     NSInteger seconds = remainingTime - (minutes * 60);
-    self.timerLabel.title = [NSString stringWithFormat:@"%02li:%02li", (long)minutes, (long)seconds];
+    return [NSString stringWithFormat:@"%02li:%02li", (long)minutes, (long)seconds];
 }
 
 - (IBAction)startButtonTapped:(id)sender {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    [self sendUserInformationToServer];
+    self.pomodoroTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    self.networkTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self selector:@selector(sendUserInformationToServer) userInfo:nil repeats:YES];
     self.startButton.hidden = YES;
     self.pauseButton.hidden = NO;
 }
@@ -60,35 +73,53 @@
         [self invalidateTimer];
         self.inPauseMode = YES;
     } else {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+        self.pomodoroTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
         self.inPauseMode = NO;
     }
 }
 
 -(void)invalidateTimer {
-    [self.timer invalidate];
-    self.timer = nil;
+    [self.pomodoroTimer invalidate];
+    self.pomodoroTimer = nil;
 }
 
 -(void)updateTimer:(NSTimer *)timer {
     if(self.remainingTime > 0){
         self.remainingTime -= 1;
     } else {
-        [self.timer invalidate];
-        self.timer = nil;
+        [self.pomodoroTimer invalidate];
+        self.pomodoroTimer = nil;
     }
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
 }
 
-- (IBAction)lookup:(id)sender {
-    NSString *computerName = [[NSHost currentHost]name];
-    UserInformation *userInformation = [[UserInformation alloc]initWithUserName:computerName remainingTime:self.remainingTime];
+- (void)sendUserInformationToServer {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    UserInformation *userInformation = [[UserInformation alloc]initWithUserName:self.userName remainingTime:self.remainingTime];
     [self.networkController sendUserInformation:userInformation];
 }
 
-#pragma mark - NetworkControllerDelegateMethods
--(void)networkController:(NetworkController *)networkController didReceiveUsersFromServer:(NSDictionary *)usersFromServer {
+#pragma mark - NetworkControllerDelegate methods
+-(void)networkController:(NetworkController *)networkController didReceiveUserNames:(NSArray *)userNames andUserInformations:(NSArray *)userInformations {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    self.usersFromServer = usersFromServer;
+    self.userNamesFromServer = userNames;
+    self.userInformationsFromServer = userInformations;
+    [self.usersTable reloadData];
 }
+
+#pragma mark - NSTableViewDataSource methods
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+    return self.userNamesFromServer.count;
+}
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    if([tableColumn.identifier isEqualToString:@"userName"]){
+        return [self.userNamesFromServer objectAtIndex:row];
+    } else {
+        UserInformation *currentUser = [self.userInformationsFromServer objectAtIndex:row];
+        return [self presentationStringFromRemainingTime:currentUser.remainingTime];
+    }
+}
+
+#pragma mark - NSTableViewDelegate methods
+
 @end

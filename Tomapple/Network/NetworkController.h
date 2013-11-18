@@ -17,7 +17,6 @@
 @end
 
 @protocol NetworkControllerDelegate <NSObject>
-
 @required
-- (void)networkController:(NetworkController *)networkController didReceiveUsersFromServer:(NSDictionary *)usersFromServer;
+- (void)networkController:(NetworkController *)networkController didReceiveUserNames:(NSArray *)userNames andUserInformations:(NSArray *)userInformations;
 @end

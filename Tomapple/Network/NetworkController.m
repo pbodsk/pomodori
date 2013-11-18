@@ -34,6 +34,7 @@
 - (void) sendUserInformation:(UserInformation *)userInformation {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     self.userInformation = userInformation;
+    self.userInformation.lastUpdateTime = [NSDate new];
     [self.client tryToSendUserUserInformation:self.userInformation];
 }
 
@@ -46,6 +47,14 @@
 
 - (void)client:(TomAppleClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    [self.delegate networkController:self didReceiveUsersFromServer:usersFromServer];
+    NSMutableArray *userNamesFromKeys = [NSMutableArray arrayWithCapacity:usersFromServer.count];
+    NSMutableArray *userInformationsFromServer = [NSMutableArray arrayWithCapacity:usersFromServer.count];
+    for(NSString *key in usersFromServer){
+        [userNamesFromKeys addObject:key];
+        UserInformation *currentUserInformation = [usersFromServer valueForKey:key];
+        [userInformationsFromServer addObject:currentUserInformation];
+    }
+    [self.delegate networkController:self didReceiveUserNames:userNamesFromKeys andUserInformations:userInformationsFromServer];
 }
+
 @end

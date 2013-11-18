@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CocoaAsyncSocket/AsyncSocket.h>
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
 @class UserInformation;
 @protocol TomAppleClientDelegate;
 
 
-@interface TomAppleClient : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate, AsyncSocketDelegate>
+@interface TomAppleClient : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate, GCDAsyncSocketDelegate>
 - (id)initWithDelegate:(id<TomAppleClientDelegate>)delegate;
 - (void)tryToSendUserUserInformation:(UserInformation *)userInformation;
 @end

@@ -14,6 +14,7 @@
     if(self) {
         self.userName = userName;
         self.remainingTime = remainingTime;
+        self.lastUpdateTime = [NSDate new];
     }
     return self;
 }
@@ -22,6 +23,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.userName forKey:@"userName"];
     [coder encodeInteger:self.remainingTime forKey:@"remainingTime"];
+    [coder encodeObject:self.lastUpdateTime forKey:@"lastUpdateTime"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -29,6 +31,7 @@
     if (self) {
         self.userName = [decoder decodeObjectForKey:@"userName"];
         self.remainingTime = [decoder decodeIntegerForKey:@"remainingTime"];
+        self.lastUpdateTime = [decoder decodeObjectForKey:@"lastUpdateTime"];
     }
     return self;
 }

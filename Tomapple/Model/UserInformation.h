@@ -11,5 +11,6 @@
 @interface UserInformation : NSObject
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic) NSInteger remainingTime;
+@property (nonatomic, strong) NSDate *lastUpdateTime;
 -(id)initWithUserName:(NSString *)userName remainingTime:(NSInteger)remainingTime;
 @end

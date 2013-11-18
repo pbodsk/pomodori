@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CocoaAsyncSocket/AsyncSocket.h>
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
 
-@interface TomAppleServer : NSObject <NSNetServiceDelegate, AsyncSocketDelegate>
+@interface TomAppleServer : NSObject <NSNetServiceDelegate, GCDAsyncSocketDelegate>
 - (void)startBroadCasting;
 @end
 

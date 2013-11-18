@@ -14,7 +14,7 @@
 @property (nonatomic, weak) id<TomAppleClientDelegate>delegate;
 @property (nonatomic, strong) NSNetServiceBrowser *netServiceBrowser;
 @property (nonatomic, strong) NSNetService *netService;
-@property (nonatomic, strong) AsyncSocket *socket;
+@property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (nonatomic) BOOL servicesFoundBeforeTimeout;
 @property (nonatomic, strong) UserInformation *userInformation;
 @end
@@ -32,11 +32,17 @@
 - (void)tryToSendUserUserInformation:(UserInformation *)userInformation {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     self.userInformation = userInformation;
-    self.netServiceBrowser = [[NSNetServiceBrowser alloc]init];
-    self.netServiceBrowser.delegate = self;
-    self.servicesFoundBeforeTimeout = NO;
-    [self.netServiceBrowser searchForServicesOfType:kDomainType inDomain:kDomain];
-    [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(searchTimeoutReached:) userInfo:nil repeats:NO];
+    if(self.netService){
+        NSLog(@"%s - self.netService already exists", __PRETTY_FUNCTION__);
+        //kan vi så bare sende pakken?
+        [self sendPacket:userInformation];
+    } else {
+        self.netServiceBrowser = [[NSNetServiceBrowser alloc]init];
+        self.netServiceBrowser.delegate = self;
+        self.servicesFoundBeforeTimeout = NO;
+        [self.netServiceBrowser searchForServicesOfType:kDomainType inDomain:kDomain];
+        [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(searchTimeoutReached:) userInfo:nil repeats:NO];
+    }
 }
 
 - (void)searchTimeoutReached:(NSTimer *)timer {
@@ -89,13 +95,16 @@
 - (BOOL)connectWithService:(NSNetService *)service {
     BOOL isConnected = NO;
     NSArray *addresses = [[service addresses]mutableCopy];
-    if(!self.socket || [self.socket isConnected] ){
-        self.socket = [[AsyncSocket alloc]initWithDelegate:self];
+    if(!self.socket || ![self.socket isConnected] ){
+        dispatch_queue_t dispatchQueue = dispatch_queue_create("dk.tomapple.dispatchqueue.client", 0);
+        self.socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatchQueue];
+        
         while (! isConnected && [addresses count]) {
             NSData *address = [addresses objectAtIndex:0];
             NSError *error = nil;
             
             if([self.socket connectToAddress:address error:&error]){
+                NSLog(@"connected");
                 isConnected = YES;
             } else if(error) {
                 NSLog(@"could not connect, error %@", error);
@@ -103,19 +112,20 @@
         }
     } else {
         isConnected = [self.socket isConnected];
+        [self sendPacket:self.userInformation];
     }
     return isConnected;
 }
 
 #pragma mark AsyncSocketDelegate methods
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
+- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [sock readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
     [self sendPacket:self.userInformation];
 }
 
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+    NSLog(@"%s, tag: %li", __PRETTY_FUNCTION__, tag);
     if (tag == 0) {
         uint64_t bodyLength = [self parseHeader:data];
         [sock readDataToLength:bodyLength withTimeout:-1.0 tag:1];
@@ -125,7 +135,7 @@
     }
 }
 
-- (void)onSocketDidDisconnect:(AsyncSocket *)sock; {
+- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
     [sock setDelegate:nil];
     [self setSocket:nil];
 }
