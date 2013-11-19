@@ -120,8 +120,7 @@
 				AD46EF2F182FA9570019BD87 /* MainMenu.xib */,
 				AD46EF21182FA9570019BD87 /* Supporting Files */,
 			);
-			name = Pomodori;
-			path = Tomapple;
+			path = Pomodori;
 			sourceTree = "<group>";
 		};
 		AD46EF21182FA9570019BD87 /* Supporting Files */ = {
@@ -348,8 +347,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tomapple/Pomodori-Prefix.pch";
-				INFOPLIST_FILE = "Tomapple/Pomodori-Info.plist";
+				GCC_PREFIX_HEADER = "Pomodori/Pomodori-Prefix.pch";
+				INFOPLIST_FILE = "Pomodori/Pomodori-Info.plist";
 				PRODUCT_NAME = Pomodori;
 				WRAPPER_EXTENSION = app;
 			};
@@ -361,8 +360,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tomapple/Pomodori-Prefix.pch";
-				INFOPLIST_FILE = "Tomapple/Pomodori-Info.plist";
+				GCC_PREFIX_HEADER = "Pomodori/Pomodori-Prefix.pch";
+				INFOPLIST_FILE = "Pomodori/Pomodori-Info.plist";
 				PRODUCT_NAME = Pomodori;
 				WRAPPER_EXTENSION = app;
 			};
