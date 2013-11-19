@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSArray *userNamesFromServer;
 @property (nonatomic, strong) NSArray *userInformationsFromServer;
 @property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) UserInformation *userInformation;
 
 @end
 
@@ -53,16 +54,19 @@
 }
 
 - (IBAction)startButtonTapped:(id)sender {
+    self.userInformation = [[UserInformation alloc]initWithUserName:self.userName remainingTime:self.remainingTime];
+    self.userInformation.pomodoroStatus = UserInformationPomodoroStatusActive;
     [self sendUserInformationToServer];
-    self.pomodoroTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
-    self.networkTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self selector:@selector(sendUserInformationToServer) userInfo:nil repeats:YES];
+    [self startTimers];
     self.startButton.hidden = YES;
     self.pauseButton.hidden = NO;
 }
 
 - (IBAction)resetButtonTapped:(id)sender {
-    [self invalidateTimer];
+    self.userInformation.pomodoroStatus = UserInformationPomodoroStatusDone;
     self.remainingTime = kInitialValue;
+    [self sendUserInformationToServer];
+    [self invalidateTimers];
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
     self.startButton.hidden = NO;
@@ -70,17 +74,28 @@
 
 - (IBAction)pauseButtonTapped:(id)sender {
     if(! self.inPauseMode){
-        [self invalidateTimer];
         self.inPauseMode = YES;
+        self.userInformation.pomodoroStatus = UserInformationPomodoroStatusPaused;
+        [self sendUserInformationToServer];
+        [self invalidateTimers];
     } else {
-        self.pomodoroTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+        [self startTimers];
+        self.userInformation.pomodoroStatus = UserInformationPomodoroStatusActive;
+        [self sendUserInformationToServer];
         self.inPauseMode = NO;
     }
 }
 
--(void)invalidateTimer {
+- (void)startTimers {
+    self.pomodoroTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    self.networkTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self selector:@selector(sendUserInformationToServer) userInfo:nil repeats:YES];
+}
+
+-(void)invalidateTimers {
     [self.pomodoroTimer invalidate];
     self.pomodoroTimer = nil;
+    [self.networkTimer invalidate];
+    self.networkTimer = nil;
 }
 
 -(void)updateTimer:(NSTimer *)timer {
@@ -95,8 +110,8 @@
 
 - (void)sendUserInformationToServer {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    UserInformation *userInformation = [[UserInformation alloc]initWithUserName:self.userName remainingTime:self.remainingTime];
-    [self.networkController sendUserInformation:userInformation];
+    self.userInformation.remainingTime = self.remainingTime;
+    [self.networkController sendUserInformation:self.userInformation];
 }
 
 #pragma mark - NetworkControllerDelegate methods
@@ -112,12 +127,19 @@
     return self.userNamesFromServer.count;
 }
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    UserInformation *currentUser = [self.userInformationsFromServer objectAtIndex:row];
     if([tableColumn.identifier isEqualToString:@"userName"]){
         return [self.userNamesFromServer objectAtIndex:row];
-    } else {
-        UserInformation *currentUser = [self.userInformationsFromServer objectAtIndex:row];
+    }
+    
+    if([tableColumn.identifier isEqualToString:@"remainingTime"]){
         return [self presentationStringFromRemainingTime:currentUser.remainingTime];
     }
+    
+    if([tableColumn.identifier isEqualToString:@"status"]) {
+        return [currentUser presentationStringForPomodoroStatus:currentUser.pomodoroStatus];
+    }
+    return @"";
 }
 
 #pragma mark - NSTableViewDelegate methods

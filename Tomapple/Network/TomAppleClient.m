@@ -77,6 +77,14 @@
     self.servicesFoundBeforeTimeout = YES;
 }
 
+- (void)netServiceBrowser:(NSNetServiceBrowser *)aNetServiceBrowser didRemoveService:(NSNetService *)aNetService moreComing:(BOOL)moreComing {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    self.netService.delegate = nil;
+    self.netService = nil;
+    self.netServiceBrowser.delegate = nil;
+    self.netServiceBrowser = nil;
+}
+
 #pragma mark NSNetServiceDelegateMethods
 - (void)netServiceDidResolveAddress:(NSNetService *)service {
     NSLog(@"%s", __PRETTY_FUNCTION__);

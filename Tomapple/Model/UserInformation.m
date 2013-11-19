@@ -19,11 +19,28 @@
     return self;
 }
 
+- (NSString *)presentationStringForPomodoroStatus:(UserInformationPomodoroStatus)status {
+    NSString *returnValue;
+    switch (status) {
+        case UserInformationPomodoroStatusActive:
+            returnValue = @"active";
+            break;
+        case UserInformationPomodoroStatusPaused:
+            returnValue = @"paused";
+            break;
+        default:
+            returnValue = @"done";
+            break;
+    }
+    return returnValue;
+}
+
 #pragma mark NSCoding methods
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.userName forKey:@"userName"];
     [coder encodeInteger:self.remainingTime forKey:@"remainingTime"];
     [coder encodeObject:self.lastUpdateTime forKey:@"lastUpdateTime"];
+    [coder encodeInteger:self.pomodoroStatus forKey:@"pomodoroStatus"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -32,6 +49,7 @@
         self.userName = [decoder decodeObjectForKey:@"userName"];
         self.remainingTime = [decoder decodeIntegerForKey:@"remainingTime"];
         self.lastUpdateTime = [decoder decodeObjectForKey:@"lastUpdateTime"];
+        self.pomodoroStatus = [decoder decodeIntegerForKey:@"pomodoroStatus"];
     }
     return self;
 }

@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, UserInformationPomodoroStatus) {
+    UserInformationPomodoroStatusActive,
+    UserInformationPomodoroStatusPaused,
+    UserInformationPomodoroStatusDone
+};
+
 @interface UserInformation : NSObject
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic) NSInteger remainingTime;
 @property (nonatomic, strong) NSDate *lastUpdateTime;
+@property (nonatomic) UserInformationPomodoroStatus pomodoroStatus;
 -(id)initWithUserName:(NSString *)userName remainingTime:(NSInteger)remainingTime;
+- (NSString *)presentationStringForPomodoroStatus:(UserInformationPomodoroStatus)status;
 @end
