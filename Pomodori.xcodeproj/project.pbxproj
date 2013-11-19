@@ -14,8 +14,8 @@
 		AD46EF2B182FA9570019BD87 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AD46EF29182FA9570019BD87 /* Credits.rtf */; };
 		AD46EF2E182FA9570019BD87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD46EF2D182FA9570019BD87 /* AppDelegate.m */; };
 		AD46EF31182FA9570019BD87 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD46EF2F182FA9570019BD87 /* MainMenu.xib */; };
-		ADC6066B1832BBF700E052C3 /* TomAppleServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6066A1832BBF700E052C3 /* TomAppleServer.m */; };
-		ADC6066E1832C0CD00E052C3 /* TomAppleClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */; };
+		ADC6066B1832BBF700E052C3 /* PomodoriServer.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6066A1832BBF700E052C3 /* PomodoriServer.m */; };
+		ADC6066E1832C0CD00E052C3 /* PomodoriClient.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC6066D1832C0CD00E052C3 /* PomodoriClient.m */; };
 		ADC606721832CAE100E052C3 /* UserInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC606711832CAE100E052C3 /* UserInformation.m */; };
 		BE3607FE948548FD89EDA463 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB061D7596D245F9AF7C3618 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -24,23 +24,23 @@
 		26C10C4A0EBC424B95244951 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		AD0EC6AF182FBC5400F0C65D /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkController.h; path = Network/NetworkController.h; sourceTree = "<group>"; };
 		AD0EC6B0182FBC5400F0C65D /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkController.m; path = Network/NetworkController.m; sourceTree = "<group>"; };
-		AD46EF17182FA9570019BD87 /* Tomapple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tomapple.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD46EF17182FA9570019BD87 /* Pomodori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD46EF1A182FA9570019BD87 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AD46EF1D182FA9570019BD87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		AD46EF1E182FA9570019BD87 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AD46EF1F182FA9570019BD87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AD46EF22182FA9570019BD87 /* Tomapple-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tomapple-Info.plist"; sourceTree = "<group>"; };
+		AD46EF22182FA9570019BD87 /* Pomodori-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pomodori-Info.plist"; sourceTree = "<group>"; };
 		AD46EF24182FA9570019BD87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AD46EF26182FA9570019BD87 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AD46EF28182FA9570019BD87 /* Tomapple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tomapple-Prefix.pch"; sourceTree = "<group>"; };
+		AD46EF28182FA9570019BD87 /* Pomodori-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pomodori-Prefix.pch"; sourceTree = "<group>"; };
 		AD46EF2A182FA9570019BD87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		AD46EF2C182FA9570019BD87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AD46EF2D182FA9570019BD87 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AD46EF30182FA9570019BD87 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		ADC606691832BBF700E052C3 /* TomAppleServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TomAppleServer.h; path = Network/TomAppleServer.h; sourceTree = "<group>"; };
-		ADC6066A1832BBF700E052C3 /* TomAppleServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TomAppleServer.m; path = Network/TomAppleServer.m; sourceTree = "<group>"; };
-		ADC6066C1832C0CD00E052C3 /* TomAppleClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TomAppleClient.h; path = Network/TomAppleClient.h; sourceTree = "<group>"; };
-		ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TomAppleClient.m; path = Network/TomAppleClient.m; sourceTree = "<group>"; };
+		ADC606691832BBF700E052C3 /* PomodoriServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PomodoriServer.h; path = Network/PomodoriServer.h; sourceTree = "<group>"; };
+		ADC6066A1832BBF700E052C3 /* PomodoriServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PomodoriServer.m; path = Network/PomodoriServer.m; sourceTree = "<group>"; };
+		ADC6066C1832C0CD00E052C3 /* PomodoriClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PomodoriClient.h; path = Network/PomodoriClient.h; sourceTree = "<group>"; };
+		ADC6066D1832C0CD00E052C3 /* PomodoriClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PomodoriClient.m; path = Network/PomodoriClient.m; sourceTree = "<group>"; };
 		ADC606701832CAE100E052C3 /* UserInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInformation.h; path = Model/UserInformation.h; sourceTree = "<group>"; };
 		ADC606711832CAE100E052C3 /* UserInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInformation.m; path = Model/UserInformation.m; sourceTree = "<group>"; };
 		CB061D7596D245F9AF7C3618 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,10 +64,10 @@
 			children = (
 				AD0EC6AF182FBC5400F0C65D /* NetworkController.h */,
 				AD0EC6B0182FBC5400F0C65D /* NetworkController.m */,
-				ADC606691832BBF700E052C3 /* TomAppleServer.h */,
-				ADC6066A1832BBF700E052C3 /* TomAppleServer.m */,
-				ADC6066C1832C0CD00E052C3 /* TomAppleClient.h */,
-				ADC6066D1832C0CD00E052C3 /* TomAppleClient.m */,
+				ADC606691832BBF700E052C3 /* PomodoriServer.h */,
+				ADC6066A1832BBF700E052C3 /* PomodoriServer.m */,
+				ADC6066C1832C0CD00E052C3 /* PomodoriClient.h */,
+				ADC6066D1832C0CD00E052C3 /* PomodoriClient.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 		AD46EF0E182FA9570019BD87 = {
 			isa = PBXGroup;
 			children = (
-				AD46EF20182FA9570019BD87 /* Tomapple */,
+				AD46EF20182FA9570019BD87 /* Pomodori */,
 				AD46EF19182FA9570019BD87 /* Frameworks */,
 				AD46EF18182FA9570019BD87 /* Products */,
 				26C10C4A0EBC424B95244951 /* Pods.xcconfig */,
@@ -85,7 +85,7 @@
 		AD46EF18182FA9570019BD87 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD46EF17182FA9570019BD87 /* Tomapple.app */,
+				AD46EF17182FA9570019BD87 /* Pomodori.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,7 +110,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		AD46EF20182FA9570019BD87 /* Tomapple */ = {
+		AD46EF20182FA9570019BD87 /* Pomodori */ = {
 			isa = PBXGroup;
 			children = (
 				ADC6066F1832CAA800E052C3 /* Model */,
@@ -120,16 +120,17 @@
 				AD46EF2F182FA9570019BD87 /* MainMenu.xib */,
 				AD46EF21182FA9570019BD87 /* Supporting Files */,
 			);
+			name = Pomodori;
 			path = Tomapple;
 			sourceTree = "<group>";
 		};
 		AD46EF21182FA9570019BD87 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AD46EF22182FA9570019BD87 /* Tomapple-Info.plist */,
+				AD46EF22182FA9570019BD87 /* Pomodori-Info.plist */,
 				AD46EF23182FA9570019BD87 /* InfoPlist.strings */,
 				AD46EF26182FA9570019BD87 /* main.m */,
-				AD46EF28182FA9570019BD87 /* Tomapple-Prefix.pch */,
+				AD46EF28182FA9570019BD87 /* Pomodori-Prefix.pch */,
 				AD46EF29182FA9570019BD87 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -147,9 +148,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD46EF16182FA9570019BD87 /* Tomapple */ = {
+		AD46EF16182FA9570019BD87 /* Pomodori */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD46EF34182FA9570019BD87 /* Build configuration list for PBXNativeTarget "Tomapple" */;
+			buildConfigurationList = AD46EF34182FA9570019BD87 /* Build configuration list for PBXNativeTarget "Pomodori" */;
 			buildPhases = (
 				7A741FE67B31415EB4F853C6 /* Check Pods Manifest.lock */,
 				AD46EF13182FA9570019BD87 /* Sources */,
@@ -161,9 +162,9 @@
 			);
 			dependencies = (
 			);
-			name = Tomapple;
+			name = Pomodori;
 			productName = Tomapple;
-			productReference = AD46EF17182FA9570019BD87 /* Tomapple.app */;
+			productReference = AD46EF17182FA9570019BD87 /* Pomodori.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -175,7 +176,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Peter Bødskov";
 			};
-			buildConfigurationList = AD46EF12182FA9570019BD87 /* Build configuration list for PBXProject "Tomapple" */;
+			buildConfigurationList = AD46EF12182FA9570019BD87 /* Build configuration list for PBXProject "Pomodori" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -187,7 +188,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD46EF16182FA9570019BD87 /* Tomapple */,
+				AD46EF16182FA9570019BD87 /* Pomodori */,
 			);
 		};
 /* End PBXProject section */
@@ -246,8 +247,8 @@
 				AD46EF27182FA9570019BD87 /* main.m in Sources */,
 				AD46EF2E182FA9570019BD87 /* AppDelegate.m in Sources */,
 				AD0EC6B1182FBC5400F0C65D /* NetworkController.m in Sources */,
-				ADC6066B1832BBF700E052C3 /* TomAppleServer.m in Sources */,
-				ADC6066E1832C0CD00E052C3 /* TomAppleClient.m in Sources */,
+				ADC6066B1832BBF700E052C3 /* PomodoriServer.m in Sources */,
+				ADC6066E1832C0CD00E052C3 /* PomodoriClient.m in Sources */,
 				ADC606721832CAE100E052C3 /* UserInformation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,9 +348,9 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tomapple/Tomapple-Prefix.pch";
-				INFOPLIST_FILE = "Tomapple/Tomapple-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Tomapple/Pomodori-Prefix.pch";
+				INFOPLIST_FILE = "Tomapple/Pomodori-Info.plist";
+				PRODUCT_NAME = Pomodori;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -360,9 +361,9 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tomapple/Tomapple-Prefix.pch";
-				INFOPLIST_FILE = "Tomapple/Tomapple-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Tomapple/Pomodori-Prefix.pch";
+				INFOPLIST_FILE = "Tomapple/Pomodori-Info.plist";
+				PRODUCT_NAME = Pomodori;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -370,7 +371,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD46EF12182FA9570019BD87 /* Build configuration list for PBXProject "Tomapple" */ = {
+		AD46EF12182FA9570019BD87 /* Build configuration list for PBXProject "Pomodori" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD46EF32182FA9570019BD87 /* Debug */,
@@ -379,7 +380,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD46EF34182FA9570019BD87 /* Build configuration list for PBXNativeTarget "Tomapple" */ = {
+		AD46EF34182FA9570019BD87 /* Build configuration list for PBXNativeTarget "Pomodori" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD46EF35182FA9570019BD87 /* Debug */,

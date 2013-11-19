@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Peter Bødskov. All rights reserved.
 //
 
-#import "TomAppleServer.h"
+#import "PomodoriServer.h"
 #import "UserInformation.h"
-@interface TomAppleServer ()
+@interface PomodoriServer ()
 @property (nonatomic, strong) NSNetService *netService;
 @property (nonatomic, strong) GCDAsyncSocket *socket;
 @property (nonatomic, strong) NSMutableDictionary *users;
 @property (nonatomic, strong) NSMutableArray *connectedSockets;
 @end
 
-@implementation TomAppleServer
+@implementation PomodoriServer
 
 -(id)init {
     self = [super init];

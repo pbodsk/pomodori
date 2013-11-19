@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Peter Bødskov. All rights reserved.
 //
 
-#import "TomAppleClient.h"
+#import "PomodoriClient.h"
 #import "UserInformation.h"
 
 
-@interface TomAppleClient ()
+@interface PomodoriClient ()
 @property (nonatomic, weak) id<TomAppleClientDelegate>delegate;
 @property (nonatomic, strong) NSNetServiceBrowser *netServiceBrowser;
 @property (nonatomic, strong) NSNetService *netService;
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UserInformation *userInformation;
 @end
 
-@implementation TomAppleClient
+@implementation PomodoriClient
 
 - (id)initWithDelegate:(id<TomAppleClientDelegate>)delegate {
     self = [super init];

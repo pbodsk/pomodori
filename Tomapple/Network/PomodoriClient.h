@@ -12,7 +12,7 @@
 @protocol TomAppleClientDelegate;
 
 
-@interface TomAppleClient : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate, GCDAsyncSocketDelegate>
+@interface PomodoriClient : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate, GCDAsyncSocketDelegate>
 - (id)initWithDelegate:(id<TomAppleClientDelegate>)delegate;
 - (void)tryToSendUserUserInformation:(UserInformation *)userInformation;
 @end
@@ -20,6 +20,6 @@
 @protocol TomAppleClientDelegate <NSObject>
 @required
 - (void)timeoutPeriodForClientSearchReached;
-- (void)client:(TomAppleClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer;
+- (void)client:(PomodoriClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer;
 @end
 

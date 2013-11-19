@@ -10,7 +10,7 @@
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
 
-@interface TomAppleServer : NSObject <NSNetServiceDelegate, GCDAsyncSocketDelegate>
+@interface PomodoriServer : NSObject <NSNetServiceDelegate, GCDAsyncSocketDelegate>
 - (void)startBroadCasting;
 @end
 

@@ -7,14 +7,14 @@
 //
 
 #import "NetworkController.h"
-#import "TomAppleServer.h"
-#import "TomAppleClient.h"
+#import "PomodoriServer.h"
+#import "PomodoriClient.h"
 #import "UserInformation.h"
 
 @interface NetworkController ()
 @property (nonatomic, weak) id<NetworkControllerDelegate>delegate;
-@property (nonatomic, strong) TomAppleClient *client;
-@property (nonatomic, strong) TomAppleServer *server;
+@property (nonatomic, strong) PomodoriClient *client;
+@property (nonatomic, strong) PomodoriServer *server;
 @property (nonatomic, strong) UserInformation *userInformation;
 
 @end
@@ -25,8 +25,8 @@
     self = [super init];
     if (self) {
         self.delegate = delegate;
-        self.client = [[TomAppleClient alloc]initWithDelegate:self];
-        self.server = [[TomAppleServer alloc]init];
+        self.client = [[PomodoriClient alloc]initWithDelegate:self];
+        self.server = [[PomodoriServer alloc]init];
     }
     return self;
 }
@@ -45,7 +45,7 @@
     [self.client tryToSendUserUserInformation:self.userInformation];
 }
 
-- (void)client:(TomAppleClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer {
+- (void)client:(PomodoriClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSMutableArray *userNamesFromKeys = [NSMutableArray arrayWithCapacity:usersFromServer.count];
     NSMutableArray *userInformationsFromServer = [NSMutableArray arrayWithCapacity:usersFromServer.count];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TomAppleClient.h"
+#import "PomodoriClient.h"
 @class UserInformation;
 @protocol NetworkControllerDelegate;
 
