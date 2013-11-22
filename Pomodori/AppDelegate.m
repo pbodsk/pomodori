@@ -34,7 +34,6 @@
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
     self.inPauseMode = NO;
-    //TODO, skal udvides så man selv kan sende et navn ind.
     self.userName = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefUserNameKey];
     
     self.networkController = [[NetworkController alloc]initWithDelegate:self];
@@ -43,12 +42,9 @@
 }
 
 - (void)initializeRemainingTime {
-    /*
     NSString *minutesFromPreference = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefPomodorLengthKey];
     NSInteger remainingTime = [minutesFromPreference integerValue] * 60;
     self.remainingTime = remainingTime;
-     */
-        self.remainingTime = 30;
 }
 
 -(void) populateTimerLabelFromRemainingTime:(NSInteger)remainingTime {
@@ -62,6 +58,7 @@
 }
 
 - (IBAction)startButtonTapped:(id)sender {
+    [self initializeRemainingTime];
     self.userInformation = [[UserInformation alloc]initWithUserName:self.userName remainingTime:self.remainingTime];
     self.userInformation.pomodoroStatus = UserInformationPomodoroStatusActive;
     [self sendUserInformationToServer];
