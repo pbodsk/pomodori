@@ -43,9 +43,12 @@
 }
 
 - (void)initializeRemainingTime {
+    /*
     NSString *minutesFromPreference = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefPomodorLengthKey];
     NSInteger remainingTime = [minutesFromPreference integerValue] * 60;
     self.remainingTime = remainingTime;
+     */
+        self.remainingTime = 30;
 }
 
 -(void) populateTimerLabelFromRemainingTime:(NSInteger)remainingTime {
@@ -107,10 +110,20 @@
     if(self.remainingTime > 0){
         self.remainingTime -= 1;
     } else {
-        [self.pomodoroTimer invalidate];
-        self.pomodoroTimer = nil;
+        self.userInformation.pomodoroStatus = UserInformationPomodoroStatusDone;
+        [self sendUserInformationToServer];
+        [self invalidateTimers];
+        [self postNotification];
     }
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
+}
+
+- (void)postNotification {
+    NSUserNotification *pomodoroDoneNotification = [NSUserNotification new];
+    pomodoroDoneNotification.title = @"Time's up";
+    pomodoroDoneNotification.informativeText = @"Well done, your pomodoro session is done. Time for a quick break";
+    pomodoroDoneNotification.soundName = NSUserNotificationDefaultSoundName;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:pomodoroDoneNotification];
 }
 
 - (void)sendUserInformationToServer {
