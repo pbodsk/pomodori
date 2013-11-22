@@ -11,7 +11,7 @@
 
 
 @interface PomodoriClient ()
-@property (nonatomic, weak) id<TomAppleClientDelegate>delegate;
+@property (nonatomic, weak) id<PomodoriClientDelegate>delegate;
 @property (nonatomic, strong) NSNetServiceBrowser *netServiceBrowser;
 @property (nonatomic, strong) NSNetService *netService;
 @property (nonatomic, strong) GCDAsyncSocket *socket;
@@ -21,7 +21,7 @@
 
 @implementation PomodoriClient
 
-- (id)initWithDelegate:(id<TomAppleClientDelegate>)delegate {
+- (id)initWithDelegate:(id<PomodoriClientDelegate>)delegate {
     self = [super init];
     if (self) {
         self.delegate = delegate;

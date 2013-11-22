@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AD0EC6B1182FBC5400F0C65D /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0EC6B0182FBC5400F0C65D /* NetworkController.m */; };
+		AD2832C6184000EE00DEFD71 /* PreferenceWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2832C5184000EE00DEFD71 /* PreferenceWindowController.m */; };
+		AD2832C91840011300DEFD71 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2832C81840011300DEFD71 /* AppController.m */; };
+		AD2832CB184002A900DEFD71 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2832CA184002A800DEFD71 /* Preferences.xib */; };
 		AD46EF1B182FA9570019BD87 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD46EF1A182FA9570019BD87 /* Cocoa.framework */; };
 		AD46EF25182FA9570019BD87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD46EF23182FA9570019BD87 /* InfoPlist.strings */; };
 		AD46EF27182FA9570019BD87 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD46EF26182FA9570019BD87 /* main.m */; };
@@ -24,6 +27,11 @@
 		26C10C4A0EBC424B95244951 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		AD0EC6AF182FBC5400F0C65D /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkController.h; path = Network/NetworkController.h; sourceTree = "<group>"; };
 		AD0EC6B0182FBC5400F0C65D /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkController.m; path = Network/NetworkController.m; sourceTree = "<group>"; };
+		AD2832C4184000EE00DEFD71 /* PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceWindowController.h; sourceTree = "<group>"; };
+		AD2832C5184000EE00DEFD71 /* PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceWindowController.m; sourceTree = "<group>"; };
+		AD2832C71840011300DEFD71 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		AD2832C81840011300DEFD71 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		AD2832CA184002A800DEFD71 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		AD46EF17182FA9570019BD87 /* Pomodori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD46EF1A182FA9570019BD87 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AD46EF1D182FA9570019BD87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -118,6 +126,11 @@
 				AD46EF2C182FA9570019BD87 /* AppDelegate.h */,
 				AD46EF2D182FA9570019BD87 /* AppDelegate.m */,
 				AD46EF2F182FA9570019BD87 /* MainMenu.xib */,
+				AD2832CA184002A800DEFD71 /* Preferences.xib */,
+				AD2832C4184000EE00DEFD71 /* PreferenceWindowController.h */,
+				AD2832C5184000EE00DEFD71 /* PreferenceWindowController.m */,
+				AD2832C71840011300DEFD71 /* AppController.h */,
+				AD2832C81840011300DEFD71 /* AppController.m */,
 				AD46EF21182FA9570019BD87 /* Supporting Files */,
 			);
 			path = Pomodori;
@@ -200,6 +213,7 @@
 				AD46EF25182FA9570019BD87 /* InfoPlist.strings in Resources */,
 				AD46EF2B182FA9570019BD87 /* Credits.rtf in Resources */,
 				AD46EF31182FA9570019BD87 /* MainMenu.xib in Resources */,
+				AD2832CB184002A900DEFD71 /* Preferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +263,8 @@
 				ADC6066B1832BBF700E052C3 /* PomodoriServer.m in Sources */,
 				ADC6066E1832C0CD00E052C3 /* PomodoriClient.m in Sources */,
 				ADC606721832CAE100E052C3 /* UserInformation.m in Sources */,
+				AD2832C6184000EE00DEFD71 /* PreferenceWindowController.m in Sources */,
+				AD2832C91840011300DEFD71 /* AppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

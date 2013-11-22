@@ -11,7 +11,7 @@
 @class UserInformation;
 @protocol NetworkControllerDelegate;
 
-@interface NetworkController : NSObject <TomAppleClientDelegate>
+@interface NetworkController : NSObject <PomodoriClientDelegate>
 - (id) initWithDelegate:(id <NetworkControllerDelegate>)delegate;
 - (void) sendUserInformation:(UserInformation *)userInformation;
 @end

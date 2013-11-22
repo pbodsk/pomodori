@@ -9,8 +9,7 @@
 #import "AppDelegate.h"
 #import "NetworkController.h"
 #import "UserInformation.h"
-
-#define kInitialValue 25 * 60
+#import "PreferenceWindowController.h"
 
 @interface AppDelegate(){
     
@@ -31,16 +30,22 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.remainingTime = kInitialValue;
+    [self initializeRemainingTime];
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
     self.inPauseMode = NO;
     //TODO, skal udvides så man selv kan sende et navn ind.
-    self.userName = [[NSHost currentHost]name];
+    self.userName = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefUserNameKey];
     
     self.networkController = [[NetworkController alloc]initWithDelegate:self];
     self.usersTable.delegate = self;
     self.usersTable.dataSource = self;
+}
+
+- (void)initializeRemainingTime {
+    NSString *minutesFromPreference = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefPomodorLengthKey];
+    NSInteger remainingTime = [minutesFromPreference integerValue] * 60;
+    self.remainingTime = remainingTime;
 }
 
 -(void) populateTimerLabelFromRemainingTime:(NSInteger)remainingTime {
@@ -64,7 +69,7 @@
 
 - (IBAction)resetButtonTapped:(id)sender {
     self.userInformation.pomodoroStatus = UserInformationPomodoroStatusDone;
-    self.remainingTime = kInitialValue;
+    [self initializeRemainingTime];
     [self sendUserInformationToServer];
     [self invalidateTimers];
     [self populateTimerLabelFromRemainingTime:self.remainingTime];

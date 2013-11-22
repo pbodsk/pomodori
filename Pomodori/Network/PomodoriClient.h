@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 @class UserInformation;
-@protocol TomAppleClientDelegate;
+@protocol PomodoriClientDelegate;
 
 
 @interface PomodoriClient : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate, GCDAsyncSocketDelegate>
-- (id)initWithDelegate:(id<TomAppleClientDelegate>)delegate;
+- (id)initWithDelegate:(id<PomodoriClientDelegate>)delegate;
 - (void)tryToSendUserUserInformation:(UserInformation *)userInformation;
 @end
 
-@protocol TomAppleClientDelegate <NSObject>
+@protocol PomodoriClientDelegate <NSObject>
 @required
 - (void)timeoutPeriodForClientSearchReached;
 - (void)client:(PomodoriClient *)client didReceiveUsersFromServer:(NSDictionary *)usersFromServer;
