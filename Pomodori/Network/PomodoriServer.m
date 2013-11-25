@@ -30,7 +30,7 @@
 - (void)startBroadCasting {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    dispatch_queue_t dispatchQueue = dispatch_queue_create("dk.tomapple.dispatchqueue.server", 0);
+    dispatch_queue_t dispatchQueue = dispatch_queue_create("dk.pomodori.dispatchqueue.server", 0);
     self.socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatchQueue];
     NSError *error = nil;
     if([self.socket acceptOnPort:0 error:&error]){

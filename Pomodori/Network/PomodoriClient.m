@@ -104,7 +104,7 @@
     BOOL isConnected = NO;
     NSArray *addresses = [[service addresses]mutableCopy];
     if(!self.socket || ![self.socket isConnected] ){
-        dispatch_queue_t dispatchQueue = dispatch_queue_create("dk.tomapple.dispatchqueue.client", 0);
+        dispatch_queue_t dispatchQueue = dispatch_queue_create("dk.pomodori.dispatchqueue.client", 0);
         self.socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatchQueue];
         
         while (! isConnected && [addresses count]) {
