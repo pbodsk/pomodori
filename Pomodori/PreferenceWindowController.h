@@ -17,4 +17,5 @@ extern NSString * const PMDRPrefPomodorLengthKey;
 @property (strong) IBOutlet NSTextField *pomodoroLengthTextField;
 - (IBAction)userNameEntered:(id)sender;
 - (IBAction)pomodoroLengthEntered:(id)sender;
+- (IBAction)updatePressed:(id)sender;
 @end

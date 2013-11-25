@@ -34,14 +34,24 @@ NSString * const PMDRPrefPomodorLengthKey = @"PMDRPrefPomodorLengthKey";
 
 
 - (IBAction)userNameEntered:(id)sender {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *newUserName = self.userNameTextField.stringValue;
     [[NSUserDefaults standardUserDefaults]setObject:newUserName forKey:PMDRPrefUserNameKey];
+    [self postNotification];
 }
 
 - (IBAction)pomodoroLengthEntered:(id)sender {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *newPomodoroLength = self.pomodoroLengthTextField.stringValue;
     [[NSUserDefaults standardUserDefaults]setObject:newPomodoroLength forKey:PMDRPrefPomodorLengthKey];
+    [self postNotification];
+}
+
+- (IBAction)updatePressed:(id)sender {
+    [self userNameEntered:nil];
+    [self pomodoroLengthEntered:nil];
+    [self.window close];
+}
+
+- (void)postNotification {
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPreferencesWasUpdatedNotification object:nil];
 }
 @end

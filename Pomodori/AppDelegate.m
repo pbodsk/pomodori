@@ -34,11 +34,14 @@
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
     self.inPauseMode = NO;
-    self.userName = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefUserNameKey];
+    
+    [self updateUserNameFromUserPreferences];
     
     self.networkController = [[NetworkController alloc]initWithDelegate:self];
     self.usersTable.delegate = self;
     self.usersTable.dataSource = self;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(preferencesWasUpdated) name:kPreferencesWasUpdatedNotification object:nil];
 }
 
 - (void)initializeRemainingTime {
@@ -55,6 +58,10 @@
     NSInteger minutes = remainingTime / 60;
     NSInteger seconds = remainingTime - (minutes * 60);
     return [NSString stringWithFormat:@"%02li:%02li", (long)minutes, (long)seconds];
+}
+
+- (void)updateUserNameFromUserPreferences {
+    self.userName = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefUserNameKey];
 }
 
 - (IBAction)startButtonTapped:(id)sender {
@@ -128,7 +135,14 @@
 - (void)sendUserInformationToServer {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     self.userInformation.remainingTime = self.remainingTime;
+    self.userInformation.userName = self.userName;
     [self.networkController sendUserInformation:self.userInformation];
+}
+
+- (void)preferencesWasUpdated {
+    [self updateUserNameFromUserPreferences];
+    [self initializeRemainingTime];
+    [self populateTimerLabelFromRemainingTime:self.remainingTime];
 }
 
 #pragma mark - NetworkControllerDelegate methods
@@ -160,5 +174,10 @@
 }
 
 #pragma mark - NSTableViewDelegate methods
+
+#pragma mark - All done
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObject:self];
+}
 
 @end
