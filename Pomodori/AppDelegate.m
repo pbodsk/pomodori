@@ -80,14 +80,16 @@
 - (IBAction)pauseButtonTapped:(id)sender {
     if(! self.inPauseMode){
         self.inPauseMode = YES;
+        [self.pauseButton setTitle:@"Resume"];
         self.userInformation.pomodoroStatus = UserInformationPomodoroStatusPaused;
         [self sendUserInformationToServer];
         [self invalidateTimers];
     } else {
-        [self startTimers];
-        self.userInformation.pomodoroStatus = UserInformationPomodoroStatusActive;
-        [self sendUserInformationToServer];
         self.inPauseMode = NO;
+        [self.pauseButton setTitle:@"Pause"];
+        self.userInformation.pomodoroStatus = UserInformationPomodoroStatusActive;
+        [self startTimers];
+        [self sendUserInformationToServer];
     }
 }
 
