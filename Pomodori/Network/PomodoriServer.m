@@ -34,7 +34,7 @@
     self.socket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatchQueue];
     NSError *error = nil;
     if([self.socket acceptOnPort:0 error:&error]){
-        self.netService = [[NSNetService alloc]initWithDomain:kDomain type:kDomainType name:@"aName" port:[self.socket localPort]];
+        self.netService = [[NSNetService alloc]initWithDomain:kDomain type:kDomainType name:@"pomodori" port:[self.socket localPort]];
         self.netService.delegate = self;
         [self.netService publish];
     } else {

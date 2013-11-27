@@ -30,6 +30,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self customizeAppearance];
     [self initializeRemainingTime];
     [self populateTimerLabelFromRemainingTime:self.remainingTime];
     self.pauseButton.hidden = YES;
@@ -42,7 +43,17 @@
     self.usersTable.dataSource = self;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(preferencesWasUpdated) name:kPreferencesWasUpdatedNotification object:nil];
+    
+    
 }
+
+- (void)customizeAppearance {
+    self.window.backgroundColor = [NSColor colorWithCalibratedRed:247.0/255.0 green:99.0/255.0 blue:92.0/255.0 alpha:1.0];
+    NSColor *buttonColor = [NSColor colorWithCalibratedRed:185.0/255.0 green:217.0/255.0 blue:176.0/255.0 alpha:1.0];
+    [self.startButton.cell setBackgroundColor:buttonColor];
+    [self.resetButton.cell setBackgroundColor:buttonColor];
+    [self.pauseButton.cell setBackgroundColor:buttonColor];
+} 
 
 - (void)initializeRemainingTime {
     NSString *minutesFromPreference = [[NSUserDefaults standardUserDefaults]objectForKey:PMDRPrefPomodorLengthKey];
